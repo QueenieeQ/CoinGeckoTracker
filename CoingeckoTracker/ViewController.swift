@@ -32,19 +32,35 @@ class ViewController: UIViewController {
               error: Error?) in
             if( error != nil)
             {
-                print(error)
+                print(error!)
                 return
             }
             
 //            initialize object
-            
+            do {
+                let json = try JSONDecoder().decode(Rates.self, from: data!)
+                self.setPrice(currency: json.rates)
+//                 completion handler
+            }
+            catch
+            {
+                print(error)
+                return
+            }
         }
 //
         dataTask.resume()
     }
+    
+//   set view have different prices
+    func setPrice(currency: Currency){
+        
+    }
+    
+    
 //     rate object
-    struct Rate: Codable {
-        let rate: Currency
+    struct Rates: Codable {
+        let rates: Currency
     }
     
 //    another object to hold all of these different prices
