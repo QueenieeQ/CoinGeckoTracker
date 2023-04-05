@@ -19,7 +19,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+        
+        let timer = Timer.scheduledTimer(
+            timeInterval: 10,
+            target: self,
+            selector: #selector(refreshData),
+            userInfo: nil,
+            repeats: true)
         // Do any additional setup after loading the view.
+    }
+    
+  @objc   func refreshData() -> Void
+    {
+        fetchData()
     }
 //     fetch data
     func fetchData() {
@@ -78,12 +90,16 @@ class ViewController: UIViewController {
     
 //     format price function
     func formatPrice(_ price: Price) -> String {
-        return String(format: "%@ %.4f", price.unit, price.value)
+        return String(
+            format: "%@ %.4f",
+            price.unit,
+            price.value
+        )
     }
 //     function for date and time last updated
     func formatDate(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd MM yy HH:mm:ss"
+        formatter.dateFormat = "dd/MM/yy HH:mm:ss"
         return formatter.string(from: date)
     }
     
