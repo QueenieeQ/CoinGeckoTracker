@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var vndPrice: UILabel!
     @IBOutlet weak var usdPrice: UILabel!
     
-    let urlSTring = "https://api.coingecko.com/api/v3/exchange_rates"
+    let urlString = "https://api.coingecko.com/api/v3/exchange_rates"
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
@@ -23,9 +23,24 @@ class ViewController: UIViewController {
     }
 //     fetch data
     func fetchData() {
-        let url = URL(string: urlSTring)
-        let defualtSession = URLSession(configuration: .default)
-        
+        let url = URL(string: urlString)
+        let defaultSession = URLSession(configuration: .default)
+//         force unwrap
+        let dataTask = defaultSession.dataTask(with: url!) {
+            ( data: Data?,
+              response: URLResponse?,
+              error: Error?) in
+            if( error != nil)
+            {
+                print(error)
+                return
+            }
+            
+//            initialize object
+            
+        }
+//
+        dataTask.resume()
     }
 //     rate object
     struct Rate: Codable {
