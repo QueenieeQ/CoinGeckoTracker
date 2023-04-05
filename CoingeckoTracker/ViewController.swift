@@ -67,11 +67,20 @@ class ViewController: UIViewController {
         self.vndPrice.text = self.formatPrice(
             currency.vnd
         )
+        self.lastUpdated.text = self.formatDate(
+            date: Date
+        )
     }
     
 //     format price function
     func formatPrice(_ price: Price) -> String {
         return String(format: "%@ %.4f", price.unit, price.value)
+    }
+//     function for date and time last updated
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MM yy HH:mm:ss"
+        return formatter.string(from: date)
     }
     
 //     rate object
