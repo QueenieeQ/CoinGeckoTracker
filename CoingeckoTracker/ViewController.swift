@@ -55,21 +55,25 @@ class ViewController: UIViewController {
 //   set view have different prices
     func setPrice(currency: Currency)
     {
-        self.btcPrice.text = self.formatPrice(
-            currency.btc
-        )
-        self.ethPrice.text = self.formatPrice(
-            currency.eth
-        )
-        self.usdPrice.text = self.formatPrice(
-            currency.usd
-        )
-        self.vndPrice.text = self.formatPrice(
-            currency.vnd
-        )
-        self.lastUpdated.text = self.formatDate(
-            date: Date
-        )
+        //         change view from async
+        DispatchQueue.main.async
+        {
+            self.btcPrice.text = self.formatPrice(
+                currency.btc
+            )
+            self.ethPrice.text = self.formatPrice(
+                currency.eth
+            )
+            self.usdPrice.text = self.formatPrice(
+                currency.usd
+            )
+            self.vndPrice.text = self.formatPrice(
+                currency.vnd
+            )
+            self.lastUpdated.text = self.formatDate(
+                date: Date()
+            )
+        }
     }
     
 //     format price function
