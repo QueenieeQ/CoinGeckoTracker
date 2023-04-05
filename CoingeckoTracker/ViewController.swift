@@ -53,10 +53,26 @@ class ViewController: UIViewController {
     }
     
 //   set view have different prices
-    func setPrice(currency: Currency){
-        
+    func setPrice(currency: Currency)
+    {
+        self.btcPrice.text = self.formatPrice(
+            currency.btc
+        )
+        self.ethPrice.text = self.formatPrice(
+            currency.eth
+        )
+        self.usdPrice.text = self.formatPrice(
+            currency.usd
+        )
+        self.vndPrice.text = self.formatPrice(
+            currency.vnd
+        )
     }
     
+//     format price function
+    func formatPrice(_ price: Price) -> String {
+        return String(format: "%@ %.4f", price.unit, price.value)
+    }
     
 //     rate object
     struct Rates: Codable {
